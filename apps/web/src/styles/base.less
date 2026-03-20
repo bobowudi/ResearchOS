@@ -1,0 +1,715 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--text);
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+h1, h2, h3, h4, p, dl, dd, dt {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(55, 92, 210, 0.15);
+}
+
+/* ─── Icon helper ─── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon--sm { width: 16px; height: 16px; }
+.icon--md { width: 20px; height: 20px; }
+.icon--lg { width: 24px; height: 24px; }
+
+/* ─── Page layout ─── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-header h1,
+.page-header h2,
+.page-header h3,
+.page-header p {
+  margin: 0;
+}
+
+.page-description {
+  max-width: 680px;
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ─── Eyebrow / Kicker ─── */
+.eyebrow,
+.card-kicker,
+.summary-label,
+.workspace-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.69rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+}
+
+.card-kicker {
+  margin-bottom: 4px;
+}
+
+/* ─── Surface / Panel ─── */
+.surface,
+.panel,
+.list-card,
+.summary-card,
+.issue-card,
+.evidence-card,
+.inline-panel,
+.workspace-card,
+.workspace-hero,
+.workspace-feed-item,
+.workspace-metric,
+.workspace-filters,
+.workspace-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-card);
+}
+
+.surface { background: var(--bg-panel); }
+.surface--subtle { background: var(--bg-panel-strong); }
+.surface--ghost { background: var(--bg-soft); border-color: transparent; }
+
+.panel,
+.list-card,
+.summary-card,
+.issue-card,
+.evidence-card,
+.inline-panel,
+.workspace-card,
+.workspace-filters,
+.workspace-section {
+  padding: 16px;
+}
+
+/* ─── Hero ─── */
+.workspace-hero {
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+}
+
+.workspace-hero--split {
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+}
+
+.workspace-hero--stacked {
+  grid-template-columns: 1fr;
+}
+
+.workspace-hero__main,
+.workspace-hero__side,
+.workspace-card,
+.workspace-feed-item,
+.workspace-section,
+.workspace-summary,
+.workspace-priority,
+.workspace-meta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.workspace-hero__headline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.workspace-hero__headline h1,
+.workspace-hero__headline h2,
+.workspace-card h3,
+.workspace-section h3,
+.workspace-feed-item h3 {
+  margin: 0;
+}
+
+.workspace-hero__headline h1,
+.workspace-hero__headline h2 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.workspace-summary,
+.workspace-copy,
+.workspace-note,
+.workspace-card p,
+.workspace-section p,
+.workspace-feed-item p {
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* ─── Pill row / meta row ─── */
+.workspace-meta-row,
+.workspace-pill-row,
+.workspace-kpi-row,
+.workspace-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ─── Grid systems ─── */
+.workspace-grid,
+.workspace-two-column,
+.workspace-three-column,
+.workspace-four-column,
+.workspace-stacked-grid,
+.workspace-feed-grid,
+.workspace-rail-grid,
+.stats-grid,
+.panel-grid,
+.detail-grid,
+.summary-strip,
+.issue-list-grid,
+.evidence-grid,
+.decision-notes-grid,
+.info-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.workspace-two-column,
+.panel-grid,
+.detail-grid,
+.decision-notes-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workspace-three-column,
+.summary-strip,
+.stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.workspace-four-column {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.issue-list-grid,
+.evidence-grid,
+.workspace-feed-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workspace-rail-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+}
+
+.single-column,
+.detail-grid-wide {
+  grid-template-columns: 1fr;
+}
+
+/* ─── Summary / Stat cards ─── */
+.summary-card,
+.stat-card,
+.workspace-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-card strong,
+.stat-card strong,
+.workspace-metric strong {
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.workspace-metric small,
+.summary-card small {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ─── Accent card variants ─── */
+.workspace-card--accent,
+.workspace-metric--accent,
+.workspace-priority {
+  background: linear-gradient(135deg, rgba(55, 92, 210, 0.05), rgba(255, 255, 255, 0.96));
+  border-color: var(--border-accent);
+}
+
+.workspace-card--warning,
+.workspace-metric--warning {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(255, 255, 255, 0.96));
+  border-color: rgba(217, 119, 6, 0.16);
+}
+
+.workspace-card--success,
+.workspace-metric--success {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(255, 255, 255, 0.96));
+  border-color: rgba(5, 150, 105, 0.16);
+}
+
+.workspace-card--danger,
+.workspace-metric--danger {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.04), rgba(255, 255, 255, 0.96));
+  border-color: rgba(220, 38, 38, 0.12);
+}
+
+.workspace-priority {
+  padding: 22px;
+}
+
+.workspace-priority__label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ─── Filters ─── */
+.workspace-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.workspace-filter-group,
+.workspace-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.workspace-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg-panel-strong);
+  color: var(--text-soft);
+  font-size: 0.82rem;
+}
+
+/* ─── Stack / bullet list ─── */
+.stack-list,
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bullet-list {
+  list-style: disc;
+  padding-left: 20px;
+  display: block;
+}
+
+.bullet-list li + li {
+  margin-top: 6px;
+}
+
+.compact-list li p {
+  margin-top: 4px;
+}
+
+/* ─── List card / row ─── */
+.list-card,
+.issue-card,
+.evidence-card,
+.evidence-card-top,
+.issue-card-top,
+.badge-group,
+.workspace-feed-item__top,
+.workspace-row {
+  display: flex;
+}
+
+.list-card,
+.issue-card,
+.evidence-card,
+.workspace-feed-item,
+.workspace-card,
+.workspace-section {
+  flex-direction: column;
+  gap: 14px;
+}
+
+.issue-card-top,
+.evidence-card-top,
+.list-card,
+.workspace-feed-item__top,
+.workspace-row {
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.issue-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.issue-card {
+  min-height: 200px;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.issue-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.issue-card h3,
+.evidence-card h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.issue-card-description,
+.evidence-card-summary,
+.evidence-card-content,
+.list-card p {
+  color: var(--text-soft);
+}
+
+.issue-card-meta,
+.evidence-card-meta,
+.info-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-grid dd,
+.issue-card-meta dd,
+.evidence-card-meta dd {
+  margin-top: 4px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.evidence-card-content {
+  font-size: 0.92rem;
+}
+
+.compact-evidence-card {
+  min-height: auto;
+}
+
+.compact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compact-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ─── Badge / Pill ─── */
+.badge-group {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.badge,
+.meta-pill,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge[data-tone='accent'],
+.status-pill[data-tone='accent'],
+.status-pill[data-tone='collecting'],
+.status-pill[data-tone='pending_decision'],
+.status-pill[data-tone='verified'] {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--border-accent);
+}
+
+.badge[data-tone='warning'],
+.status-pill[data-tone='warning'],
+.status-pill[data-tone='analyzing'],
+.status-pill[data-tone='pending_review'],
+.status-pill[data-tone='in_progress'],
+.status-pill[data-tone='partial'] {
+  color: #92400e;
+  background: var(--warning-soft);
+  border-color: rgba(217, 119, 6, 0.18);
+}
+
+.badge[data-tone='success'],
+.status-pill[data-tone='success'],
+.status-pill[data-tone='decided'],
+.status-pill[data-tone='done'],
+.status-pill[data-tone='effective'],
+.status-pill[data-tone='adopted'] {
+  color: #065f46;
+  background: var(--success-soft);
+  border-color: rgba(5, 150, 105, 0.18);
+}
+
+.badge[data-tone='danger'],
+.status-pill[data-tone='danger'],
+.status-pill[data-tone='rejected'],
+.status-pill[data-tone='negative'] {
+  color: #dc2626;
+  background: var(--danger-soft);
+  border-color: rgba(239, 68, 68, 0.16);
+}
+
+.badge[data-tone='muted'],
+.status-pill[data-tone='muted'],
+.status-pill[data-tone='draft'],
+.status-pill[data-tone='todo'],
+.status-pill[data-tone='expired'],
+.status-pill[data-tone='closed'],
+.status-pill[data-tone='ineffective'] {
+  color: var(--text-muted);
+  background: var(--bg-panel-strong);
+  border-color: var(--border);
+}
+
+.meta-pill {
+  color: var(--text-soft);
+  border-color: var(--border);
+  background: var(--bg-panel-strong);
+}
+
+/* ─── Tags ─── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+.issue-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.workspace-meta-stack {
+  align-items: flex-start;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* ─── Error / Empty ─── */
+.error-banner {
+  padding: 12px 16px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.92rem;
+}
+
+.empty-state {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ─── Decision card layout ─── */
+.decision-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.decision-recommendation {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.decision-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.decision-column {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+}
+
+.decision-column[data-tone='success'] {
+  background: var(--success-soft);
+}
+
+.decision-column[data-tone='danger'] {
+  background: var(--danger-soft);
+}
+
+.inline-panel h4,
+.decision-column h4 {
+  margin-bottom: 8px;
+}
+
+.rich-list-card {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* ─── Section title (flex: label + right element) ─── */
+.section-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1120px) {
+  .workspace-hero--split,
+  .workspace-three-column,
+  .workspace-four-column,
+  .workspace-two-column,
+  .workspace-feed-grid,
+  .workspace-rail-grid,
+  .issue-list-grid,
+  .evidence-grid,
+  .compact-grid,
+  .summary-strip,
+  .stats-grid,
+  .panel-grid,
+  .detail-grid,
+  .decision-columns,
+  .decision-notes-grid,
+  .issue-card-meta,
+  .evidence-card-meta,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .page-header,
+  .issue-card-top,
+  .evidence-card-top,
+  .section-title,
+  .rich-list-card,
+  .list-card,
+  .workspace-row,
+  .workspace-feed-item__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .issue-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-header,
+  .section-title,
+  .workspace-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

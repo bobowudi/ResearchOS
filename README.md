@@ -10,6 +10,35 @@
 决策 → 认知 → 洞察 → 行动 → 回看
 ```
 
+## 仓库结构
+
+```text
+apps/
+  web/        Vue 前端应用
+  api/        Next.js BFF / API
+packages/
+  shared/     当前 MVP 共享层（迁移中）
+  domain/     目标领域模型与类型包
+  mock-data/  目标 mock 数据与 mock repository 包
+  config/     共享工程配置预留
+specs/
+  features/   各功能模块 OpenSpec
+  platform/   架构、鉴权、租户等平台规范
+docs/
+  architecture/
+  product/
+  adr/
+```
+
+详细边界说明见 [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md)。
+
+## 开发约束
+
+- 前端按 `app / features / shared` 分层演进。
+- 后端按 `route / modules / shared / infrastructure` 分层演进。
+- 新功能先补 `specs/`，再写实现。
+- `packages/shared` 是迁移过渡层，后续逐步拆到 `packages/domain` 和 `packages/mock-data`。
+
 ## 文档目录
 
 | 文档 | 内容 |
@@ -18,6 +47,9 @@
 | [02-功能架构](docs/02-功能架构.md) | 五层架构（数据层/语义层/推理层/决策层/闭环层）及数据流 |
 | [03-闭环试点方案](docs/03-闭环试点方案.md) | 品牌健康度场景试点、功能清单、验证假设、时间线 |
 | [04-竞品分析与市场定位](docs/04-竞品分析与市场定位.md) | 全球竞品格局、市场空白、差异化壁垒、定位声明 |
+| [07-架构设计-v1.2](docs/07-架构设计-v1.2.md) | 当前架构设计上游文档 |
+| [Repository Architecture](docs/architecture/repository-structure.md) | 仓库结构、模块边界、迁移规则 |
+| [OpenSpec Template](specs/templates/README.md) | 功能/平台 spec 编写约定 |
 
 ## 项目起源
 
